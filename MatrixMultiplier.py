@@ -55,6 +55,7 @@ def check_no_row_vector_inputs(matrix_string: str) -> bool:
     else:
         return True
 
+#If there are no multiple line separators consecurtively, function returns True
 def check_multiple_line_separators_consecutively(matrix_string: str) -> bool:
     split_lines = matrix_string.split('|')
     split_elements = split_lines[0].split(';')
@@ -75,31 +76,13 @@ def check_no_uneven_row_vectors(matrix_string: str) -> bool:
     else:
         return True
 
-def check_alphanumeric_inputs_mixed_in(matrix: list) -> bool:
-    all_alphanumeric_combinations = re.compile(r'^\w+$')
-    all_alphabetical_combinations = re.compile(r'^[a-zA-Z]+$')
-##    alphanumeric_input = all_alphanumeric_combinations.match(matrix)
-##    alphabetical_input = all_alphabetical_combinations.match(matrix)
-    for rows in matrix:
-        for elements in rows:
-            print(all_alphanumeric_combinations.match(elements))
 
-
-
-# def check_alphanumeric_inputs_mixed_in(matrix_string: str) -> bool:
-#     all_alphanumeric_combinations = re.compile(r'^\w+$')
-#     all_alphabetical_combinations = re.compile(r'^[a-zA-Z]+$')
-#     alphanumeric_input = all_alphanumeric_combinations.match(matrix_string)
-#     alphabetical_input = all_alphabetical_combinations.match(matrix_string)
-#     if alphabetical_input != 'None':
-#         print('True1')
-#     elif alphanumeric_input != 'None':
-#         return print('True2')
-#     else:
-#         return print('False')
-
-
-
+# If the dimensions of the matrices match, function returns True
+def check_matching_dimensions(first_matrix: str, second_matrix: str) -> bool:
+    if len(first_matrix.split('|')) == len(second_matrix.split('|')):
+        return True
+    else:
+        return False
 
 # print(check_no_line_separator('hfjdhshdhfsdj'))
 # print(check_erroneous_input('jfhsjdhfsj')) 
@@ -108,15 +91,11 @@ def check_alphanumeric_inputs_mixed_in(matrix: list) -> bool:
 # print(check_no_uneven_row_vectors('1;2;3|4;5|6;7;8'))
 
 
-# check_alphanumeric_inputs_mixed_in('a')
-# check_alphanumeric_inputs_mixed_in('dsk|fsdk|fhsdj')
-# check_non_filled_cell('1;2;3|3;4;5|6;7;8')
-# check_matching_dimensions('2;3|4;5','7;8|9;0')
-
-
 
 'Creating Matrices Logic'
 
+# If an element in the row vectors has any alphabetical letters or symbolic characters, that element will
+# be replaced with 0 instead
 def create_matrices(matrix_string: str, dimension: int) -> list:
 
     unorganized_matrix = []
@@ -131,10 +110,8 @@ def create_matrices(matrix_string: str, dimension: int) -> list:
                 unorganized_matrix.append(rounded_element)
 
             elif element.isdigit() != True:
-                print(element)
-                print("This value is not numeric. Terminate the matrix here.")
-                return False
-            
+                unorganized_matrix.append(0)
+                
             else:
                 unorganized_matrix.append(int(element))
     
@@ -144,33 +121,7 @@ def create_matrices(matrix_string: str, dimension: int) -> list:
 
     return matrix
 
-##def create_matrices(matrix_string: str, dimension: int) -> list:
-##
-##    unorganized_matrix = []
-##    split_lines = matrix_string.split('|')
-##
-##    for i in split_lines:
-##        for j in i.split(';'):
-##            if j.isdigit() != True:
-##                print(j)
-##                print("This value is not numeric. Terminate the matrix here.")
-##                return False
-##            
-##            elif j.isdigit() == True and ',' in j:
-##                converted_integer = j.replace(',','')
-##                unorganized_matrix.append(int(converted_integer))
-##    
-##            else:
-##                unorganized_matrix.append(int(j))
-##
-##    matrix = [unorganized_matrix[x:x+dimension]
-##                        for x in range(0, len(unorganized_matrix), dimension)]
-##
-##    return matrix
 
-
-def dimension_of_matrix(matrix_string: list) -> int:
-    return len(matrix_string.split('|'))
 
 
 # line = '12;32;45|56;100;1|19;13;4'
@@ -273,8 +224,6 @@ def final_loop():
     first_matrix = str(input("Enter your first matrix in the format specified above: "))
     second_matrix = str(input("Enter your second matrix in the format specified above: "))
     dimension = int(input("Specify the dimension of these respective n x n matrix as a single number: "))
-    print('Empty?')
-    print(check_empty(first_matrix))
     print(check_empty(second_matrix))
     print('Erroneous Inputs?')
     print(check_erroneous_input(first_matrix))
@@ -291,14 +240,51 @@ def final_loop():
     print('No uneven row vectors')
     print(check_no_uneven_row_vectors(first_matrix))
     print(check_no_uneven_row_vectors(second_matrix))
+    print('Checking matching dimensions')
+    print(check_matching_dimensions(first_matrix,second_matrix))
     actual_1matrix = create_matrices(first_matrix, dimension)
     actual_2matrix = create_matrices(second_matrix, dimension)
+    print("Alpha matrix")
+    print(actual_1matrix)
 
     print("Final Result")
     display_resultant_matrix(actual_1matrix, actual_2matrix)
-    
 
-final_loop()
+
+##def final_loop():
+##    first_matrix = str(input("Enter your first matrix in the format specified above: "))
+##    second_matrix = str(input("Enter your second matrix in the format specified above: "))
+##    dimension = int(input("Specify the dimension of these respective n x n matrix as a single number: "))
+##    print('Empty?')
+##    print(check_empty(first_matrix))
+##    print(check_empty(second_matrix))
+##    print('Erroneous Inputs?')
+##    print(check_erroneous_input(first_matrix))
+##    print(check_erroneous_input(second_matrix))
+##    print("No line separators")
+##    print(check_no_line_separator(first_matrix))
+##    print(check_no_line_separator(second_matrix))
+##    print("Multiple line separators")
+##    print(check_multiple_line_separators_consecutively(first_matrix))
+##    print(check_multiple_line_separators_consecutively(second_matrix))
+##    print ('No row vector inputs')
+##    print(check_no_row_vector_inputs(first_matrix))
+##    print(check_no_row_vector_inputs(second_matrix))
+##    print('No uneven row vectors')
+##    print(check_no_uneven_row_vectors(first_matrix))
+##    print(check_no_uneven_row_vectors(second_matrix))
+##    print('Checking matching dimensions')
+##    print(check_matching_dimensions(first_matrix,second_matrix))
+##    actual_1matrix = create_matrices(first_matrix, dimension)
+##    actual_2matrix = create_matrices(second_matrix, dimension)
+##    print("Alpha matrix")
+##    print(actual_1matrix)
+##
+##    print("Final Result")
+##    display_resultant_matrix(actual_1matrix, actual_2matrix)
+##    
+##
+##final_loop()
 
 
     
