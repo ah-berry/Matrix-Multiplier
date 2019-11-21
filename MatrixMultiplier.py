@@ -21,68 +21,69 @@ import re
 
 'Test Cases'
 
-def check_empty(matrix_string: str) -> bool:
-    if len(matrix_string) == 0:
-        return True
-    return False
-
-
-# If there is no line separator, it will return True
-def check_no_line_separator(matrix_string: str) -> bool:
-    if '|' not in matrix_string:
-        return True
-    return False
-
-# If there is an erroneous input, function will return True
-def check_erroneous_input(matrix_string: str) -> bool:
-    prog = re.compile(r'^\w+$')
-    result = prog.match(matrix_string)
-    if result != None:
-        return True
-    return False
-
-# If there are no elements in between line separators, function will return True
-def check_no_row_vector_inputs(matrix_string: str) -> bool:
-    true_check_list = []
-    split_lines = matrix_string.split('|')
-    for row_vectors in split_lines:
-        if row_vectors == '':
-            true_check_list.append('True')
-        elif row_vectors != '':
-            true_check_list.append('False')
-    if 'False' in true_check_list:
-        return False
-    else:
-        return True
-
-#If there are no multiple line separators consecurtively, function returns True
-def check_multiple_line_separators_consecutively(matrix_string: str) -> bool:
-    split_lines = matrix_string.split('|')
-    split_elements = split_lines[0].split(';')
-    if len(split_elements) != len(split_lines):
-        return True
-    else:
-        return False
-
-'Both functions I need to finish'
-
-# If the row vectors are uneven, function returns True
-def check_no_uneven_row_vectors(matrix_string: str) -> bool:
-    split_lines = matrix_string.split('|')
-    length_of_row_vectors_list = [len(i.split(';')) for i in split_lines]
-    boolean = all(lens == length_of_row_vectors_list[0] for lens in length_of_row_vectors_list)
-    if boolean == 'True':
-        return False
-    else:
-        return True
-
-
-# If the dimensions of the matrices match, function returns True
-def check_matching_dimensions(first_matrix: str, second_matrix: str) -> bool:
-    if len(first_matrix.split('|')) == len(second_matrix.split('|')):
-        return True
-    else:
-        return False
+###If nothing is inputted as a character, function returns True
+##def check_empty(matrix_string: str) -> bool:
+##    if len(matrix_string) == 0:
+##        return True
+##    return False
+##
+##
+### If there is no line separator, it will return True
+##def check_no_line_separator(matrix_string: str) -> bool:
+##    if '|' not in matrix_string:
+##        return True
+##    return False
+##
+### If there is an erroneous input, function will return True
+##def check_erroneous_input(matrix_string: str) -> bool:
+##    prog = re.compile(r'^\w+$')
+##    result = prog.match(matrix_string)
+##    if result != None:
+##        return True
+##    return False
+##
+### If there are no elements in between line separators, function will return True
+##def check_no_row_vector_inputs(matrix_string: str) -> bool:
+##    true_check_list = []
+##    split_lines = matrix_string.split('|')
+##    for row_vectors in split_lines:
+##        if row_vectors == '':
+##            true_check_list.append('True')
+##        elif row_vectors != '':
+##            true_check_list.append('False')
+##    if 'False' in true_check_list:
+##        return False
+##    else:
+##        return True
+##
+###If there are no multiple line separators consecurtively, function returns True
+##def check_multiple_line_separators_consecutively(matrix_string: str) -> bool:
+##    split_lines = matrix_string.split('|')
+##    split_elements = split_lines[0].split(';')
+##    if len(split_elements) != len(split_lines):
+##        return True
+##    else:
+##        return False
+##
+##'Both functions I need to finish'
+##
+### If the row vectors are uneven, function returns True
+##def check_no_uneven_row_vectors(matrix_string: str) -> bool:
+##    split_lines = matrix_string.split('|')
+##    length_of_row_vectors_list = [len(i.split(';')) for i in split_lines]
+##    boolean = all(lens == length_of_row_vectors_list[0] for lens in length_of_row_vectors_list)
+##    if boolean == 'True':
+##        return False
+##    else:
+##        return True
+##
+##
+### If the dimensions of the matrices match, function returns True
+##def check_matching_dimensions(first_matrix: str, second_matrix: str) -> bool:
+##    if len(first_matrix.split('|')) == len(second_matrix.split('|')):
+##        return True
+##    else:
+##        return False
 
 # print(check_no_line_separator('hfjdhshdhfsdj'))
 # print(check_erroneous_input('jfhsjdhfsj')) 
@@ -220,10 +221,202 @@ def display_resultant_matrix(initial_matrix: list, following_matrix: list):
 # Needs to be in the matrix user input needs to be in the format of: 12;32;45|56;100;1|19;13;4
 # Decimal inputs will be rounded to the nearest whole number.
 
+
+
+
+
+#If nothing is inputted as a character, function returns True
+def check_empty(matrix_string: str) -> bool:
+    if len(matrix_string) == 0:
+        return True
+    return False
+
+
+# If there is no line separator, it will return True
+def check_no_line_separator(matrix_string: str) -> bool:
+    if '|' not in matrix_string:
+        return True
+    return False
+
+# If there is an erroneous input, function will return True
+def check_erroneous_input(matrix_string: str) -> bool:
+    prog = re.compile(r'^\w+$')
+    result = prog.match(matrix_string)
+    if result != None:
+        return True
+    return False
+
+# If there are no elements in between line separators, function will return True
+def check_no_row_vector_inputs(matrix_string: str) -> bool:
+    true_check_list = []
+    split_lines = matrix_string.split('|')
+    for row_vectors in split_lines:
+        if row_vectors == '':
+            true_check_list.append('True')
+        elif row_vectors != '':
+            true_check_list.append('False')
+    if 'False' in true_check_list:
+        return False
+    else:
+        return True
+
+#If there are multiple line separators consecurtively, function returns True
+##def check_multiple_line_separators_consecutively(matrix_string: str) -> bool:
+##    split_lines = matrix_string.split('|')
+##    split_elements = split_lines[0].split(';')
+##    if len(split_elements) != len(split_lines):
+##        return True
+##    else:
+##        return False
+
+def check_multiple_line_separators_consecutively(matrix_string: str) -> bool:
+    split_lines = matrix_string.split('|')
+    split_elements = split_lines[0].split(';')
+    if len(split_elements) != len(split_lines):
+        return True
+    else:
+        return False
+    
+
+'Both functions I need to finish'
+
+# If the row vectors are uneven, function returns True
+##def check_uneven_row_vectors(matrix_string: str) -> bool:
+##    split_lines = matrix_string.split('|')
+##    length_of_row_vectors_list = [len(i.split(';')) for i in split_lines]
+##    boolean = all(lens == length_of_row_vectors_list[0] for lens in length_of_row_vectors_list)
+##    if boolean == 'True':
+##        return False
+##    else:
+##        return True
+##
+##
+### If the dimensions of the matrices match, function returns True
+##def check_matching_dimensions(first_matrix: str, second_matrix: str) -> bool:
+##    if len(first_matrix.split('|')) == len(second_matrix.split('|')):
+##        return True
+##    else:
+##        return False
+
+#If there are uneven row vectors, return True 
+def check_uneven_row_vectors(matrix_string: str) -> bool:
+    split_lines = matrix_string.split('|')
+    length_of_row_vectors_list = [len(i.split(';')) for i in split_lines]
+    boolean = all(lens == length_of_row_vectors_list[0] for lens in length_of_row_vectors_list)
+    if boolean == 'True':
+        return False
+    else:
+        return True
+
+
+# If the dimensions of the matrices do not match, function returns True
+def check_no_matching_dimensions(first_matrix: str, second_matrix: str) -> bool:
+    print(len(first_matrix))
+    print(len(second_matrix))
+    if len(first_matrix.split('|')) != len(second_matrix.split('|')):
+        return True
+    else:
+        return False
+
+
+##def all_checks (first_matrix: str, second_matrix: str) -> bool:
+##        if all ([check_empty(first_matrix), check_empty(second_matrix),
+##                 check_no_line_separator(first_matrix), check_no_line_separator(second_matrix),
+##                 check_erroneous_input(first_matrix), check_erroneous_input(second_matrix),
+##                 check_no_row_vector_inputs(first_matrix), check_no_row_vector_inputs(second_matrix),
+##                 check_multiple_line_separators_consecutively(first_matrix), check_multiple_line_separators_consecutively(second_matrix),
+##                 check_uneven_row_vectors(first_matrix), check_uneven_row_vectors(second_matrix),
+##                 check_matching_dimensions(first_matrix,second_matrix)]) == False:
+##
+##            print([check_empty(first_matrix), check_empty(second_matrix),
+##                 check_no_line_separator(first_matrix), check_no_line_separator(second_matrix),
+##                 check_erroneous_input(first_matrix), check_erroneous_input(second_matrix),
+##                 check_no_row_vector_inputs(first_matrix), check_no_row_vector_inputs(second_matrix),
+##                 check_multiple_line_separators_consecutively(first_matrix), check_multiple_line_separators_consecutively(second_matrix),
+##                 check_uneven_row_vectors(first_matrix), check_uneven_row_vectors(second_matrix),
+##                 check_matching_dimensions(first_matrix,second_matrix)])
+##
+##            print(all([check_empty(first_matrix), check_empty(second_matrix),
+##                 check_no_line_separator(first_matrix), check_no_line_separator(second_matrix),
+##                 check_erroneous_input(first_matrix), check_erroneous_input(second_matrix),
+##                 check_no_row_vector_inputs(first_matrix), check_no_row_vector_inputs(second_matrix),
+##                 check_multiple_line_separators_consecutively(first_matrix), check_multiple_line_separators_consecutively(second_matrix),
+##                 check_uneven_row_vectors(first_matrix), check_uneven_row_vectors(second_matrix),
+##                 check_matching_dimensions(first_matrix,second_matrix)]))
+##            
+##            return False
+##        else:
+##            print("All error pitfalls have been avoided")
+##            return True
+##
+
+def all_checks (first_matrix: str, second_matrix: str) -> bool:
+    bool_list = []
+    if check_empty(first_matrix) == True or check_empty(second_matrix) == True:
+        print("1")
+        bool_list.append(True)
+
+    elif check_no_line_separator(first_matrix) == True or check_no_line_separator(second_matrix) == True:
+        print("2")
+        bool_list.append(True)
+
+    elif check_erroneous_input(first_matrix) == True or check_erroneous_input(second_matrix) == True:
+        print("3")
+        bool_list.append(True)
+
+    elif check_no_row_vector_inputs(first_matrix) == True or check_no_row_vector_inputs(second_matrix) == True:
+        print("4")
+        bool_list.append(True)
+
+    elif check_multiple_line_separators_consecutively(first_matrix) == True or check_multiple_line_separators_consecutively(second_matrix) == True:
+        print("5")
+        bool_list.append(True)
+
+    elif check_uneven_row_vectors(first_matrix) == True or check_uneven_row_vectors(second_matrix) == True:
+        print("6")
+        bool_list.append(True)
+
+    elif check_no_matching_dimensions(first_matrix,second_matrix) == True:
+        print("7")
+        bool_list.append(True)
+
+    print(bool_list)
+    print([check_empty(first_matrix), check_empty(second_matrix),
+                 check_no_line_separator(first_matrix), check_no_line_separator(second_matrix),
+                 check_erroneous_input(first_matrix), check_erroneous_input(second_matrix),
+                 check_no_row_vector_inputs(first_matrix), check_no_row_vector_inputs(second_matrix),
+                 check_multiple_line_separators_consecutively(first_matrix), check_multiple_line_separators_consecutively(second_matrix),
+                 check_uneven_row_vectors(first_matrix), check_uneven_row_vectors(second_matrix),
+                 check_no_matching_dimensions(first_matrix,second_matrix)])
+          
+    if len(bool_list) == 0:
+        return True
+
+    elif len(bool_list) != 0:
+        return False
+
+
+##def final_loop():
+##    flag = False
+##    while flag != True:
+##        first_matrix = str(input("Enter your first matrix in the format specified above: "))
+##        second_matrix = str(input("Enter your second matrix in the format specified above: "))
+##        dimension = int(input("Specify the dimension of these respective n x n matrix as a single number: "))
+##        flag = all_checks(first_matrix, second_matrix)
+##        
+##    actual_1matrix = create_matrices(first_matrix, dimension)
+##    actual_2matrix = create_matrices(second_matrix, dimension)
+##    
+##    print("Final Result")
+##    display_resultant_matrix(actual_1matrix, actual_2matrix)
+
+
 def final_loop():
     first_matrix = str(input("Enter your first matrix in the format specified above: "))
     second_matrix = str(input("Enter your second matrix in the format specified above: "))
     dimension = int(input("Specify the dimension of these respective n x n matrix as a single number: "))
+    print('Empty?')
+    print(check_empty(first_matrix))
     print(check_empty(second_matrix))
     print('Erroneous Inputs?')
     print(check_erroneous_input(first_matrix))
@@ -237,11 +430,11 @@ def final_loop():
     print ('No row vector inputs')
     print(check_no_row_vector_inputs(first_matrix))
     print(check_no_row_vector_inputs(second_matrix))
-    print('No uneven row vectors')
-    print(check_no_uneven_row_vectors(first_matrix))
-    print(check_no_uneven_row_vectors(second_matrix))
-    print('Checking matching dimensions')
-    print(check_matching_dimensions(first_matrix,second_matrix))
+    print('Uneven row vectors')
+    print(check_uneven_row_vectors(first_matrix))
+    print(check_uneven_row_vectors(second_matrix))
+    print('Non-matching dimensions')
+    print(check_no_matching_dimensions(first_matrix,second_matrix))
     actual_1matrix = create_matrices(first_matrix, dimension)
     actual_2matrix = create_matrices(second_matrix, dimension)
     print("Alpha matrix")
@@ -249,42 +442,9 @@ def final_loop():
 
     print("Final Result")
     display_resultant_matrix(actual_1matrix, actual_2matrix)
+    
 
-
-##def final_loop():
-##    first_matrix = str(input("Enter your first matrix in the format specified above: "))
-##    second_matrix = str(input("Enter your second matrix in the format specified above: "))
-##    dimension = int(input("Specify the dimension of these respective n x n matrix as a single number: "))
-##    print('Empty?')
-##    print(check_empty(first_matrix))
-##    print(check_empty(second_matrix))
-##    print('Erroneous Inputs?')
-##    print(check_erroneous_input(first_matrix))
-##    print(check_erroneous_input(second_matrix))
-##    print("No line separators")
-##    print(check_no_line_separator(first_matrix))
-##    print(check_no_line_separator(second_matrix))
-##    print("Multiple line separators")
-##    print(check_multiple_line_separators_consecutively(first_matrix))
-##    print(check_multiple_line_separators_consecutively(second_matrix))
-##    print ('No row vector inputs')
-##    print(check_no_row_vector_inputs(first_matrix))
-##    print(check_no_row_vector_inputs(second_matrix))
-##    print('No uneven row vectors')
-##    print(check_no_uneven_row_vectors(first_matrix))
-##    print(check_no_uneven_row_vectors(second_matrix))
-##    print('Checking matching dimensions')
-##    print(check_matching_dimensions(first_matrix,second_matrix))
-##    actual_1matrix = create_matrices(first_matrix, dimension)
-##    actual_2matrix = create_matrices(second_matrix, dimension)
-##    print("Alpha matrix")
-##    print(actual_1matrix)
-##
-##    print("Final Result")
-##    display_resultant_matrix(actual_1matrix, actual_2matrix)
-##    
-##
-##final_loop()
+final_loop()
 
 
     
